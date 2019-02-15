@@ -19,7 +19,7 @@ export const heroReducer = (state = INITIAL_STATE, action) => {
   }
 };
 
-updateHero({ name: "john luc" });
+// updateHero({ name: "john luc" });
 
 /*
   {
