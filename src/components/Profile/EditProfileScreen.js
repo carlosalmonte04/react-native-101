@@ -12,15 +12,16 @@ import { colors, fonts } from "@assets";
 import { MOCK_USER } from "@mocks";
 
 export class UnconnectedEditProfileScreen extends React.PureComponent {
-  state = {
-    name: MOCK_USER.name,
-    lastName: MOCK_USER.lastName,
-    heroName: MOCK_USER.heroName,
-    bio: MOCK_USER.bio,
-  };
+  // state = {
+  //   name: MOCK_USER.name,
+  //   lastName: MOCK_USER.lastName,
+  //   heroName: MOCK_USER.heroName,
+  //   bio: MOCK_USER.bio,
+  // };
 
   onChangeText = inputName => inputValue => {
-    this.setState({ [inputName]: inputValue });
+
+    this.props.updateHero({ [inputName]: inputValue });
   };
 
   onSubmit = async () => {
@@ -43,7 +44,7 @@ export class UnconnectedEditProfileScreen extends React.PureComponent {
   };
 
   render() {
-    const { name, lastName, heroName, bio } = this.state;
+    const { name, lastName, heroName, bio } = this.props;
 
     const { heroReducer, updateHero } = this.props;
 
@@ -52,10 +53,7 @@ export class UnconnectedEditProfileScreen extends React.PureComponent {
         <TextInput
           style={styles.textInput}
           value={name}
-          onChangeText={inputValue => {
-            console.log("inputValue", inputValue);
-            // this.setState({ [inputName]: inputValue });
-          }}
+          onChangeText={this.onChangeText("name")}
         />
         <TextInput
           style={styles.textInput}
@@ -95,10 +93,11 @@ export class UnconnectedEditProfileScreen extends React.PureComponent {
   }
 }
 
-const mapStateToProps = ({}) => ({});
+const mapStateToProps = (state) => state;
 
 export const EditProfileScreen = connect(
-  heroReducer,
+  // need state connected & the action
+  mapStateToProps,
   {
     updateHero,
   },
