@@ -1,0 +1,1 @@
+Import {HomeScreen} from ‘@components’;
