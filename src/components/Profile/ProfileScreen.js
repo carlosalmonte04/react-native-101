@@ -1,8 +1,9 @@
 import React from "react";
 import { View, Text, StyleSheet } from "react-native";
 import { colors, fonts } from "@assets";
+import { connect } from "react-redux";
 
-export class ProfileScreen extends React.PureComponent {
+export class UnconnectedProfileScreen extends React.PureComponent {
 	navToEditProfile = () => {
 		const { navigation } = this.props;
 
@@ -10,6 +11,14 @@ export class ProfileScreen extends React.PureComponent {
 	};
 
 	render() {
+		const { name, lastName, heroName, bio } = this.props;
+
+		const [firstHeroName, secondHeroName] = heroName.split(" ");
+		// const [firstHeroName, secondHeroName] = [1,2]
+
+		//  firstHeroName = 1
+		//  secondHeroName = 2
+
 		return (
 			<View style={styles.container}>
 				<Text style={styles.editProfileText} onPress={this.navToEditProfile}>
@@ -17,21 +26,31 @@ export class ProfileScreen extends React.PureComponent {
 				</Text>
 				<View style={styles.titleContainer}>
 					<Text style={styles.title}>
-						<Text style={styles.FirstCar}>C</Text>aptain{" "}
-						<Text style={styles.SecCar}>A</Text>merica
+						<Text style={styles.FirstCar}>{firstHeroName[0]}</Text>
+						{firstHeroName.slice(1)}{" "}
+						<Text style={styles.SecCar}>{secondHeroName[0]}</Text>
+						{secondHeroName.slice(1)}
 					</Text>
-					<Text style={styles.subtitle}>Steve Rogers</Text>
+					<Text style={styles.subtitle}>
+						{name} {lastName}
+					</Text>
 				</View>
 				<View style={styles.DescriptionContainer}>
-					<Text style={styles.text}>
-						America’s World War II Super-Soldier continues his fight in the
-						present as an Avenger and untiring sentinel of liberty.
-					</Text>
+					<Text style={styles.text}>{bio}</Text>
 				</View>
 			</View>
 		);
 	}
 }
+
+const mapStateToProps = state => ({
+	name: state.name,
+	lastName: state.lastName,
+	heroName: state.heroName,
+	bio: state.bio,
+});
+
+export const ProfileScreen = connect(mapStateToProps)(UnconnectedProfileScreen);
 
 const styles = StyleSheet.create({
 	container: {

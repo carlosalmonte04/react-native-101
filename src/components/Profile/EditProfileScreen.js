@@ -12,21 +12,15 @@ import { colors, fonts } from "@assets";
 import { MOCK_USER } from "@mocks";
 
 export class UnconnectedEditProfileScreen extends React.PureComponent {
-  state = {
-    name: MOCK_USER.name,
-    lastName: MOCK_USER.lastName,
-    heroName: MOCK_USER.heroName,
-    bio: MOCK_USER.bio,
-  };
-
   onChangeText = inputName => inputValue => {
-    this.setState({ [inputName]: inputValue });
+    // this.setState({ [inputName]: inputValue });
+    this.props.updateHero({ [inputName]: inputValue });
   };
 
   onSubmit = async () => {
     // TODO:
     const { name, lastName, heroReducer, bio } = this.state;
-    const { updateHero } = this.props;
+    // const { updateHero } = this.props;
 
     // loading state ON
 
@@ -37,13 +31,13 @@ export class UnconnectedEditProfileScreen extends React.PureComponent {
       bio,
     };
 
-    updateHero(newUserAttributes);
+    this.props.updateHero(newUserAttributes);
 
     // loading state OFF
   };
 
   render() {
-    const { name, lastName, heroName, bio } = this.state;
+    const { name, lastName, heroName, bio } = this.props;
 
     const { heroReducer, updateHero } = this.props;
 
@@ -52,10 +46,7 @@ export class UnconnectedEditProfileScreen extends React.PureComponent {
         <TextInput
           style={styles.textInput}
           value={name}
-          onChangeText={inputValue => {
-            console.log("inputValue", inputValue);
-            // this.setState({ [inputName]: inputValue });
-          }}
+          onChangeText={this.onChangeText("name")}
         />
         <TextInput
           style={styles.textInput}
@@ -95,10 +86,10 @@ export class UnconnectedEditProfileScreen extends React.PureComponent {
   }
 }
 
-const mapStateToProps = ({}) => ({});
+const mapStateToProps = state => state;
 
 export const EditProfileScreen = connect(
-  heroReducer,
+  mapStateToProps,
   {
     updateHero,
   },

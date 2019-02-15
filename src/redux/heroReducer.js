@@ -1,4 +1,5 @@
 import { MOCK_USER } from "@mocks";
+import { UPDATE_HERO } from "./types";
 
 const INITIAL_STATE = {
   name: MOCK_USER.name,
@@ -16,6 +17,9 @@ export const heroReducer = (state = INITIAL_STATE, action) => {
         ...state,
         ...newUserAttributes,
       };
+
+    default:
+      return state;
   }
 };
 
