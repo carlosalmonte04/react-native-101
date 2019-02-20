@@ -43,11 +43,11 @@ export class UnconnectedProfileScreen extends React.PureComponent {
 	}
 }
 
-const mapStateToProps = state => ({
-	name: state.name,
-	lastName: state.lastName,
-	heroName: state.heroName,
-	bio: state.bio,
+const mapStateToProps = ({ hero }) => ({
+	name: hero.name,
+	lastName: hero.lastName,
+	heroName: hero.heroName,
+	bio: hero.bio,
 });
 
 export const ProfileScreen = connect(mapStateToProps)(UnconnectedProfileScreen);

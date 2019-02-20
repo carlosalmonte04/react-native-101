@@ -1,6 +1,6 @@
-import { createStore } from "redux";
+import { createStore, combineReducers } from "redux";
 import { heroReducer } from "./heroReducer";
 
-console.log("HERO REDUCER", heroReducer);
+const reducers = combineReducers({ hero: heroReducer });
 
-export const store = createStore(heroReducer);
+export const store = createStore(reducers);
