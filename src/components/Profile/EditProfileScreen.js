@@ -7,8 +7,8 @@ import {
   TextInput,
 } from "react-native";
 import { connect } from "react-redux";
-import { heroReducer, updateHero } from "@redux";
 import { colors, fonts } from "@assets";
+import { heroReducer, updateHero } from "@redux";
 import { MOCK_USER } from "@mocks";
 
 export class UnconnectedEditProfileScreen extends React.PureComponent {

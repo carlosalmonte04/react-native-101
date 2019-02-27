@@ -12,7 +12,6 @@ const isWeb = Platform.OS === "web";
 AppRegistry.registerComponent(appName, () => App);
 
 if (isWeb) {
-  console.log("I AM WEB!!");
   AppRegistry.runApplication(appName, {
     rootTag: window.document.getElementById("react-root"),
   });
