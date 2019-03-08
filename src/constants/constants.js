@@ -5,6 +5,8 @@ const ts = moment().valueOf();
 
 const { MARVEL_PUBLIC_KEY, MARVEL_PRIVATE_KEY, API_URL } = Config;
 
+// export const { width, height } = Dimensions.get('window')
+
 const hash = md5(`${ts}${MARVEL_PRIVATE_KEY}${MARVEL_PUBLIC_KEY}`);
 
 const CHARACTERS_URL = `${API_URL}/characters?ts=${ts}&apikey=${MARVEL_PUBLIC_KEY}&limit=50&hash=${hash}`;
